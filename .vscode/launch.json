@@ -6,7 +6,7 @@
     "configurations": [
         
         {
-            "name": "Python: Current File",
+            "name": "Python: Run Bot",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/app.py",
