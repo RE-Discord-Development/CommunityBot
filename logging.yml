@@ -1,0 +1,19 @@
+version: 1
+disable_existing_loggers: true
+
+formatters:
+  standard:
+    format: "[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s"
+    datefmt: '%H:%M:%S'
+
+handlers:
+  console:  # handler which will log into stdout
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: standard  # Use formatter defined above
+    stream: ext://sys.stdout
+
+root:  # Loggers are organized in hierarchy - this is the root logger config
+  level: DEBUG
+  handlers: [console]  # Attaches both handler defined above
+
