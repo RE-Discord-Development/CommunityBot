@@ -31,6 +31,7 @@ class Bot(commands.Bot):
                     plugins.append("Cogs.{0}".format(item))
             else:
                 logging.debug("Found: {0}".format(item))
+                item = str.replace(item, ".py", "")
                 plugins.append("Cogs.{0}".format(item))
 
         for plugin in plugins:
@@ -44,4 +45,5 @@ class Bot(commands.Bot):
         logging.debug("Scanned ./Cogs for cogs")
 
     def on_command_error(self, cxt, error):
-        logging.exception("A command error occurred: {0}".format(traceback.format_list(traceback.extract_stack())))
+        logging.exception("A command error occurred: {0}".format(
+            ''.join(traceback.format_exception(None, value=error, tb=error.__traceback__))))
