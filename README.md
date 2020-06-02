@@ -6,7 +6,11 @@ CommunityBot is a community developed bot for the Real Engineering Discord serve
 Want to talk with us about fun engineering stuff? Pop on over to the [Real Engineering Discord Server](https://discord.gg/s8BhkmN)
 
 ## Running the bot locally
-To run the bot locally for development purposes, you will need to provide the token as an environment variable. If you are using the supplied docker-compose file, then copy the file `.env.sample` to `.env` and edit it to include your discord bot token in the indicated location. 
+To run the bot locally, you will need to provide the token as an environment variable. 
+
+If you have docker installed and are using the supplied docker-compose file, then copy the file `.env.sample` to `.env` and edit it to include your discord bot token in the indicated location. Then you can use docker-compose to build and run the bot using
+- `docker-compose build`
+- `docker-compose up`
 
 If you wish to just run the bot direct on the machine, then this can be done using `BOT_TOKEN={YOUR BOT TOKEN HERE} python app.py`. 
 
