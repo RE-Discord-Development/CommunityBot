@@ -14,6 +14,7 @@ def main():
 
     config = dict()
     config["bot_token"] = os.environ['BOT_TOKEN']
+    config["bot_storage"] = os.environ['BOT_STORAGE']
 
     bot = CommunityBot.Bot(config)
     bot.run()

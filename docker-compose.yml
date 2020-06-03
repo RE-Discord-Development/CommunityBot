@@ -4,3 +4,9 @@ services:
     build: .
     environment: 
       - BOT_TOKEN
+      - BOT_STORAGE
+    volumes:
+      - "communitybot-data:/var/lib/communitybot"
+
+volumes:
+  communitybot-data:
