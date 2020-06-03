@@ -15,10 +15,12 @@ spec:
     metadata:
       labels:                    
         app: communitybot
-    spec:                        
+    spec:
+      imagePullSecrets:
+        - name: catbuttes-dockerhub                     
       containers:
       - name: communitybot
-        image: docker.pkg.github.com/re-discord-development/communitybot/bot
+        image: catbuttes/communitybot/bot:0.1
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
