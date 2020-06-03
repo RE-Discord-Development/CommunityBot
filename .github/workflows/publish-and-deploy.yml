@@ -12,7 +12,7 @@ on:
 
 env:
   # TODO: Change variable to your image's name.
-  IMAGE_NAME: re-discord-development/communitybot/bot
+  IMAGE_NAME: docker.pkg.github.com/re-discord-development/communitybot/bot
   IMAGE_VERSION: $(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
 
 jobs:
@@ -68,7 +68,7 @@ jobs:
           echo VERSION=$VERSION
 
           docker tag image $IMAGE_ID:$VERSION
-          docker push docker.pkg.github.com/$IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
       - name: Notify on publish success
         if: success()
         run: |
