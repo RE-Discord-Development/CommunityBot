@@ -113,9 +113,9 @@ jobs:
         id: setcontext
       - uses: Azure/k8s-deploy@v1
         with:
-          namespace: 'phoebe'
+          namespace: 'real-engineering'
           manifests: |
-              k8s/phoebe-cd-deploy.yml
+              kubernetes/communitybot-cd-deploy.yml
           images: docker.pkg.github.com/re-discord-development/communitybot/bot:${{env.IMAGE_VERSION}}
       - name: Notify on Deploy success
         if: success()
