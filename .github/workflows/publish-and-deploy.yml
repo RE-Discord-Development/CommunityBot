@@ -101,6 +101,7 @@ jobs:
       - name: Set up environment
         run: |
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          VERSION=$(echo $VERSION | sed -e 's/^v//')
           [ "$VERSION" == "master" ] && VERSION=latest
           echo "::set-env name=IMAGE_VERSION::$VERSION"
       
