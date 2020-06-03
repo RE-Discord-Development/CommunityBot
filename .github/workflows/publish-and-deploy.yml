@@ -12,7 +12,7 @@ on:
 
 env:
   # TODO: Change variable to your image's name.
-  IMAGE_NAME: CommunityBot
+  IMAGE_NAME: communitybot
   IMAGE_VERSION: $(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
 
 jobs:
@@ -117,7 +117,7 @@ jobs:
           namespace: 'real-engineering'
           manifests: |
               kubernetes/communitybot-cd-deploy.yml
-          images: docker.pkg.github.com/re-discord-development/communitybot/bot:${{env.IMAGE_VERSION}}
+          images: catbuttes/communitybot:${{env.IMAGE_VERSION}}
       - name: Notify on Deploy success
         if: success()
         run: |

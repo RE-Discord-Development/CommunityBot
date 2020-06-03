@@ -20,7 +20,7 @@ spec:
         - name: catbuttes-dockerhub                     
       containers:
       - name: communitybot
-        image: catbuttes/communitybot/bot
+        image: catbuttes/communitybot
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
