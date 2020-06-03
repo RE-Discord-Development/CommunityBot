@@ -68,7 +68,7 @@ jobs:
           echo VERSION=$VERSION
 
           docker tag image $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
+          docker push docker.pkg.github.com/$IMAGE_ID:$VERSION
       - name: Notify on publish success
         if: success()
         run: |
