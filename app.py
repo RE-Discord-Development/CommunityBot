@@ -4,6 +4,7 @@ import os
 import yaml
 import logging
 import logging.config
+import prometheus_client
 
 
 def main():
@@ -21,5 +22,5 @@ def main():
 
 
 if __name__ == "__main__":
-
+    prometheus_client.start_http_server(9000)
     main()
