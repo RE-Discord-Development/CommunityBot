@@ -3,7 +3,7 @@ disable_existing_loggers: true
 
 formatters:
   standard:
-    format: "[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s"
+    format: "{%(pathname)s:%(lineno)d} %(levelname)s - %(message)s"
     datefmt: '%H:%M:%S'
 
 handlers:
