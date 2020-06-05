@@ -1,6 +1,11 @@
 from discord.ext import commands
 import discord
 import logging
+import prometheus_client
+
+
+# Set up some metrics for monitoring purposes
+hello_response_time = prometheus_client.Summary('hello_response_time', 'The time the hello caommand takes to execute')
 
 
 # Setup is required by discord.py for registration of the cog
@@ -9,19 +14,21 @@ def setup(bot):
 
 
 class Greetings(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
-        self._last_member = None
 
-    @commands.command()
+    @commands.command(aliases=['contribute'])
     async def hello(self, ctx, *, member: discord.Member = None):
-        """Says hello"""
-        logging.debug("Starting Hello with {0}".format(ctx.author.id))
-        member = member or ctx.author
-        if self._last_member is None or self._last_member.id != member.id:
-            await ctx.send('Hello {0.name}~'.format(member))
-        else:
-            await ctx.send('Hello {0.name}... This feels familiar.'.format(member))
-        self._last_member = member
+        """Says hello and share information about myself"""
+        with hello_response_time.time():
+            logging.debug("Starting Hello with {0}".format(ctx.author.id))
+            message = "Hello <@{0}>! \n I am <@{1}>, a community driven project "\
+                "for the Real Engineering Discord. If you want to get involved, my source "\
+                "can be found at https://github.com/RE-Discord-Development/CommunityBot."\
+                "Feel free to write a new Cog to make me do something and submit a pull request\n"\
+                "If you have any questions, then feel free to ping Catbuttes or Poterzus for "\
+                "more information"\
+                .format(ctx.author.id, self.bot.user.id)
 
-        logging.debug("Ending Hello with {0}".format(ctx.author.id))
+            await ctx.send(message)
+            logging.debug("Ending Hello with {0}".format(ctx.author.id))
