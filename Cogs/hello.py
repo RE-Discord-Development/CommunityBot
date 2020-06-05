@@ -26,7 +26,7 @@ class Greetings(commands.Cog):
                 "for the Real Engineering Discord. If you want to get involved, my source "\
                 "can be found at https://github.com/RE-Discord-Development/CommunityBot."\
                 "Feel free to write a new Cog to make me do something and submit a pull request\n"\
-                "If you have any questions, then feel free to ping Catbuttes or Poterzus for "\
+                "If you have any questions, then feel free to ping CatButtes or Potzerus for "\
                 "more information"\
                 .format(ctx.author.id, self.bot.user.id)
 
