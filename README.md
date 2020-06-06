@@ -19,7 +19,9 @@ For development, VSCode is able to use a `.env` file when launching a debug prof
 ## Development tips
 
 ### Getting started
-The bot is intended to provide a framework to allow anybody to add functionality to it. With this in mind, all that is required is to add a valid [discord.py](https://github.com/Rapptz/discord.py) cog in the `Cogs` directory. On each startup that bot will attempt to load all valid Cogs it finds in there. An example single file Cog is provided called `hello.py` which shows a basic setup. Multi file modules are also supported if you wish to do something more advanced. 
+The bot is intended to provide a framework to allow anybody to add functionality to it. With this in mind, all that is required is to add a valid [discord.py](https://github.com/Rapptz/discord.py) cog in the `Cogs` directory. On each startup that bot will attempt to load all valid Cogs it finds in there. An example single file Cog is provided called `hello.py` which shows a basic setup. Multi file modules are also supported if you wish to do something more advanced.
+
+To install the bot's dependancies, run `pip install -r requirements.txt` in the main directory. This will install everything that is required by the bot. For development, we also suggest installing flake8 to perform the same checks we do against all pull requests.
 
 ### Persisting data
 The bot runs in a container on a kubernetes cluster. This means that the bot can and will restart randomly - you should not rely on storing data in varables over long periods of time. Additionally, data written to the filesystem will not persist across container restarts unless it in a designated persistant storage location. A persistant storage location has been made available, and the path to this location can be found using `bot.config["bot_storage"]`.
