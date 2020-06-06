@@ -1,7 +1,6 @@
 from discord.ext import commands
-import discord
-import logging
 # This Cog is made by Potzerus#3950 and is meant to facilitate a little game
+
 
 class SpaceShips(commands.Cog):
     def __init__(self, bot):
