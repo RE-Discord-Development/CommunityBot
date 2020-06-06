@@ -3,6 +3,11 @@ import os
 from typing import List
 import logging
 import traceback
+import prometheus_client
+
+
+loaded_cogs = prometheus_client.Counter('loaded_cogs', 'The number of cogs that are loaded')
+found_cogs = prometheus_client.Counter('found_cogs', 'The number of cogs that were found in the search')
 
 
 class Bot(commands.Bot):
@@ -27,9 +32,11 @@ class Bot(commands.Bot):
             logging.debug("Found: {0}".format(item))
             if os.path.isdir("Cogs/{0}".format(item)):
                 if "__init__.py" in os.listdir("Cogs/{0}".format(item)):
+                    found_cogs.inc()
                     logging.debug("Found: {0}".format(item))
                     plugins.append("Cogs.{0}".format(item))
             else:
+                found_cogs.inc()
                 logging.debug("Found: {0}".format(item))
                 item = str.replace(item, ".py", "")
                 plugins.append("Cogs.{0}".format(item))
@@ -38,6 +45,7 @@ class Bot(commands.Bot):
             logging.debug("Loading {0}".format(plugin))
             try:
                 self.load_extension(plugin)
+                loaded_cogs.inc()
                 logging.debug("Loading {0}".format(plugin))
             except Exception as err:
                 logging.exception("Error loading {0}: {1}".format(plugin, err))
