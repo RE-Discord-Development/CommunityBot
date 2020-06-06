@@ -5,7 +5,7 @@ import prometheus_client
 
 
 # Set up some metrics for monitoring purposes
-hello_response_time = prometheus_client.Summary('hello_response_time', 'The time the hello caommand takes to execute')
+hello_response_time = prometheus_client.Summary('communitybot_hello_response_time', 'The time the hello command takes to run')
 
 
 # Setup is required by discord.py for registration of the cog
