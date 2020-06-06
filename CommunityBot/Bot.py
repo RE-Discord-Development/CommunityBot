@@ -6,8 +6,8 @@ import traceback
 import prometheus_client
 
 
-loaded_cogs = prometheus_client.Counter('loaded_cogs', 'The number of cogs that are loaded')
-found_cogs = prometheus_client.Counter('found_cogs', 'The number of cogs that were found in the search')
+loaded_cogs = prometheus_client.Counter('communitybot_loaded_cogs', 'The number of cogs that are loaded')
+found_cogs = prometheus_client.Counter('communitybot_found_cogs', 'The number of cogs that were found in the search')
 
 
 class Bot(commands.Bot):
