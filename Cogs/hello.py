@@ -24,7 +24,7 @@ class Greetings(commands.Cog):
             logging.debug("Starting Hello with {0}".format(ctx.author.id))
             message = "Hello <@{0}>! \n I am <@{1}>, a community driven project "\
                 "for the Real Engineering Discord. If you want to get involved, my source "\
-                "can be found at https://github.com/RE-Discord-Development/CommunityBot."\
+                "can be found at https://github.com/RE-Discord-Development/CommunityBot "\
                 "Feel free to write a new Cog to make me do something and submit a pull request\n"\
                 "If you have any questions, then feel free to ping CatButtes or Potzerus for "\
                 "more information"\
