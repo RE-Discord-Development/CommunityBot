@@ -1,5 +1,27 @@
-from discord.ext import commands
 # This Cog is made by Potzerus#3950 and is meant to facilitate a little game
+from discord.ext import commands
+
+
+class Module:
+    def __init__(self, stats):
+        self.__dict__.update(stats)
+
+
+class Ship:
+    default = {
+        "modules": {
+            "engine": {
+                "speed": 2,
+            },
+            "cargo": 0
+        }
+    }
+
+    def __init__(self, parts):
+        modules = {}
+        for name, stats in parts['modules'].items():
+            modules[name] = Module(stats)
+        self.__dict__.update(modules)
 
 
 class SpaceShips(commands.Cog):
