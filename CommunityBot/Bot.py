@@ -46,7 +46,7 @@ class Bot(commands.Bot):
             try:
                 self.load_extension(plugin)
                 loaded_cogs.inc()
-                logging.debug("Loading {0}".format(plugin))
+                logging.debug("Loaded {0}".format(plugin))
             except Exception as err:
                 logging.exception("Error loading {0}: {1}".format(plugin, err))
 
