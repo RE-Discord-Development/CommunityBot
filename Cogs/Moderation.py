@@ -38,9 +38,9 @@ class Moderation(commands.Cog):
     @mod.command()
     @commands.has_guild_permissions(manage_roles=True)
     async def unload(self, ctx, plugin) -> None:
+        """Unload a loaded plugin"""
         with unload_response_time.time():
             logging.debug("unloading plugin {0}".format(plugin))
-            """Unload a loaded plugin"""
             if plugin in self.bot.extensions:
                 self.bot.unload_extension(plugin)
                 logging.debug("unloaded plugin {0}".format(plugin))
