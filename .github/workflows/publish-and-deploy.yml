@@ -52,11 +52,11 @@ jobs:
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
 
       - name: Log into registry
-        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
       - name: Push image
         run: |
-          IMAGE_ID=catbuttes/$IMAGE_NAME
+          IMAGE_ID=docker.pkg.github.com/$IMAGE_NAME
           
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
@@ -117,7 +117,7 @@ jobs:
           namespace: 'real-engineering'
           manifests: |
               kubernetes/communitybot-cd-deploy.yml
-          images: catbuttes/communitybot:${{env.IMAGE_VERSION}}
+          images: docker.pkg.github.com/communitybot:${{env.IMAGE_VERSION}}
       - name: Notify on Deploy success
         if: success()
         run: |
