@@ -1,0 +1,15 @@
+- name: Deploy the application stack to a server
+  hosts: all
+
+  vars:
+    - ansible_user: admin
+    - ansible_python_interpreter: "/usr/bin/python3"
+    - communitybot_version: "0.2.1"
+    - DISCORD_BOT_TOKEN: ""
+
+  roles:
+    - communitybot
+  
+
+  
+
