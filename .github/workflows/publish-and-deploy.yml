@@ -100,7 +100,7 @@ jobs:
       - uses: ./.github/actions/ansible
         env:
           VAULT_PASS: ${{ secrets.VAULT_PASS }}
-          BOT_VERSION: $(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          BOT_VERSION_RAW: ${{ github.ref }}
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
 
       - name: Notify on Deploy success
