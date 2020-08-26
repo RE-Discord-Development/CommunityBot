@@ -1,0 +1,27 @@
+---
+- name: Ensure the monitoring network exists
+  docker_network:
+    name: monitoring
+    state: present
+
+- name: Ensure data persistance location
+  file:
+    name: "{{ data_persistance_location }}/communitybot/data"
+    state: directory
+    mode: "u=rwx,g=rwx,o=rwx"
+
+- name: Start a communitybot container
+  docker_container:
+    name: communitybot
+    image: "catbuttes/communitybot:{{communitybot_version}}"
+    restart_policy: always
+    volumes:
+      - "{{ data_persistance_location }}/communitybot/data:/var/lib/communitybot"
+    networks:
+      - name: monitoring
+    env:
+      BOT_TOKEN: "{{ DISCORD_BOT_TOKEN }}"
+      BOT_STORAGE: "/var/lib/communitybot"
+    purge_networks: yes
+    recreate: yes
+    state: started

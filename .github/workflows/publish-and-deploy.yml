@@ -96,28 +96,12 @@ jobs:
     if: github.ref != 'refs/heads/master'
 
     steps:
-      - uses: actions/checkout@v2
-        
-      - name: Set up environment
-        run: |
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-          VERSION=$(echo $VERSION | sed -e 's/^v//')
-          [ "$VERSION" == "master" ] && VERSION=latest
-          echo "::set-env name=IMAGE_VERSION::$VERSION"
-      
-      - uses: azure/setup-kubectl@v1
-        id: install
-      - uses: azure/k8s-set-context@v1
-        with:
-          method: kubeconfig
-          kubeconfig: ${{ secrets.KUBECONFIG }} # Use secret (https://developer.github.com/actions/managing-workflows/storing-secrets/)
-        id: setcontext
-      - uses: Azure/k8s-deploy@v1
-        with:
-          namespace: 'real-engineering'
-          manifests: |
-              kubernetes/communitybot-cd-deploy.yml
-          images: docker.pkg.github.com/communitybot:${{env.IMAGE_VERSION}}
+      - uses: actions/checkout@v1
+      - uses: ./.github/actions/ansible
+        env:
+          VAULT_PASS: ${{ secrets.VAULT_PASS }}
+          BOT_VERSION: $(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+
       - name: Notify on Deploy success
         if: success()
         run: |
