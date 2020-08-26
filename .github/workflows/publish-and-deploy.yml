@@ -57,7 +57,7 @@ jobs:
       - name: Push image
         run: |
           IMAGE_ID=catbuttes/$IMAGE_NAME
-                    
+
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
@@ -101,6 +101,7 @@ jobs:
         env:
           VAULT_PASS: ${{ secrets.VAULT_PASS }}
           BOT_VERSION: $(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
 
       - name: Notify on Deploy success
         if: success()

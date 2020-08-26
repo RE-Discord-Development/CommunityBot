@@ -5,6 +5,7 @@
     - ansible_user: admin
     - ansible_python_interpreter: "/usr/bin/python3"
     - communitybot_version: "0.2.1"
+    - data_persistance_location: "/etc/docker/containers/data"
     - DISCORD_BOT_TOKEN: ""
 
   roles:
