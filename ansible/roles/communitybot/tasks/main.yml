@@ -10,10 +10,16 @@
     state: directory
     mode: "u=rwx,g=rwx,o=rwx"
 
+- name: Log into github registry
+  docker_login:
+    registry: "{{docker_registry}}"
+    username: "{{docker_registry_user}}"
+    password: "{{docker_registry_pass}}"
+
 - name: Start a communitybot container
   docker_container:
     name: communitybot
-    image: "catbuttes/communitybot:{{communitybot_version}}"
+    image: "docker.pkg.github.com/re-discord-development/communitybot/communitybot:{{communitybot_version}}"
     restart_policy: always
     volumes:
       - "{{ data_persistance_location }}/communitybot/data:/var/lib/communitybot"

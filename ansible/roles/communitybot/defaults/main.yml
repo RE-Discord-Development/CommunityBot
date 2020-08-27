@@ -1,1 +1,4 @@
 communitybot_version: "latest"
+docker_registry: "docker.pkg.github.com"
+docker_registry_user: ""
+docker_registry_pass: ""
