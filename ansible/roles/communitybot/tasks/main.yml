@@ -1,18 +1,13 @@
 ---
-- name: Ensure the monitoring network exists
-  docker_network:
-    name: monitoring
-    state: present
-
 - name: Ensure data persistance location
   file:
     name: "{{ data_persistance_location }}/communitybot/data"
     state: directory
     mode: "u=rwx,g=rwx,o=rwx"
 
-- name: Log into github registry
-  docker_login:
-    registry: "{{docker_registry}}"
+- name: Authenticate to the github package registry
+  community.general.docker_login:
+    registry_url: docker.pkg.github.com
     username: "{{docker_registry_user}}"
     password: "{{docker_registry_pass}}"
 
@@ -23,11 +18,11 @@
     restart_policy: always
     volumes:
       - "{{ data_persistance_location }}/communitybot/data:/var/lib/communitybot"
-    networks:
-      - name: monitoring
     env:
       BOT_TOKEN: "{{ DISCORD_BOT_TOKEN }}"
       BOT_STORAGE: "/var/lib/communitybot"
-    purge_networks: yes
+    published_ports:
+      - "9000:9000"
+    purge_networks: no
     recreate: yes
     state: started
